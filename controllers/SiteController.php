@@ -54,101 +54,39 @@ class SiteController extends BaseController
         return $this->render('index');
     }
 
-    public function actionLogin()
-    {
-        if (!\Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        }
-        return $this->render('login', [
-            'model' => $model,
-        ]);
+    public function actionTodo(){
+        return $this->render('list');
     }
 
-    public function actionLogout()
-    {
-        Yii::$app->user->logout();
-
-        return $this->goHome();
+    public function actionCurrency(){
+        return $this->render('exchange_currency');
     }
 
-    public function actionChange_password(){
-
-        $old_password=Yii::$app->request->post('password');
-        $new_password=Yii::$app->request->post('new_password');
+    public function actionGet_all_items(){
 
         $query= new Query();
-        if($userInfo = $query->from('user')->where(['userId'=>Yii::$app->user->id, 'password'=>sha1($old_password)])->exists())
+        $items = $query->from('items')->select(['*'])->all();
+        echo json_encode($items);
+    }
+
+    public function actionAdd_task(){
+        $taskName=Yii::$app->request->post('taskName');
+        $taskDescription=Yii::$app->request->post('taskDescription');
+        $taskDate=Yii::$app->request->post('taskDate');
+
+        $query= new Query();
+        if($listInfo = $query->from('items')->where(['item_name'=>$taskName])->exists())
         {
+            echo json_encode('bad');
+        }
+        else{
+
             Yii::$app->db->createCommand()
-                ->update('user',
-                    ['password'=>sha1($new_password)],['userId'=>Yii::$app->user->id])
+                ->insert('items',
+                    ['item_name'=>$taskName,'item_description'=>$taskDescription, 'item_data_create'=>$taskDate])
                 ->execute();
             echo json_encode('ok');
         }
-        else{
-            echo json_encode('bad');
-        }
     }
-
-    public function actionRestore_password(){
-        $password=Yii::$app->request->post('password');
-        $name = Yii::$app->request->post('userName');
-
-        $query= new Query();
-        if($userInfo = $query->from('user')->where(['email'=>$name])->exists())
-        {
-            Yii::$app->db->createCommand()
-                ->update('user',
-                    ['password'=>sha1($password)],['email'=>$name])
-                ->execute();
-            echo json_encode('ok');
-        }
-        else{
-            echo json_encode('bad');
-        }
-    }
-
-    public function actionContact_us(){
-
-        $myemail = 'kiril.malyhin@yandex.ru';
-
-        $name = Yii::$app->request->post('first_name');
-        $email_address = Yii::$app->request->post('email');
-        $message = Yii::$app->request->post('comments');
-        $company = Yii::$app->request->post('company');
-        $phone = Yii::$app->request->post('phone');
-
-            $to = $myemail;
-
-            $email_subject = "Contact form submission: $name";
-
-            $email_body = "You have received a new message. ".
-
-                " Here are the details:\n Name: $name \n ".
-
-                "Company: $company\n Email: $email_address\n".
-
-                "Phone: $phone\n Message: \n $message";
-
-            $headers = "From: $myemail\n";
-
-            $headers .= "Reply-To: $email_address";
-
-            mail($to,$email_subject,$email_body,$headers);
-
-            echo json_encode('ok');
-
-    }
-
-    public function actionRestore(){
-        return $this->render('restorePassword');
-    }
-
-
 
 }

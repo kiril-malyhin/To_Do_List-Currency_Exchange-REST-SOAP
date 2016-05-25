@@ -24,7 +24,6 @@ body {
     background: #efefef;
     padding: 10px;
     font-family: 'Raleway', sans-serif;
-
 }
 
 .pack-index {
@@ -53,20 +52,24 @@ body {
     vertical-align: top;
 }
 
-.bar-st {
-    background: url("images/bar.jpg") no-repeat center;
+.todo-currency-start{
+    background: url("images/vehicle.jpg") no-repeat center;
     height: 100%;
-    min-height: 100%;
     background-size: cover;
-    font-family: 'Raleway', sans-serif;
+    min-height: 100%;
 }
 
-.card-img{
-    background: url("images/listImage.jpg") no-repeat center;
-    height: 200px;
-    width: 230px;
-    background-size: cover;
+.todo-currency-start-button{
+    background-color: transparent;
+    border: 3px solid white;
+    border-radius: 15px;
+    color: white;
 }
+.todo-currency-start-button:hover{
+    background-color: transparent;
+    color: red;
+}
+
 
 .wrap {
     min-height: 100%;
@@ -371,10 +374,10 @@ hr {
 }
 
 .hr-black {
-    margin-top: 44px;
+    margin-top: 20px;
     margin-bottom: 20px;
     border: 0;
-    border-top: 5px solid black;
+    border-top: 3px solid black;
 }
 
 .hr-lists {
@@ -702,10 +705,19 @@ span.tab{
 }
 
 .arrow-pos {
+    color: #060e80;
     padding-left: 20px;
-    padding-top: 20px;
+    padding-top: 25px;
     position: absolute;
     left: 0;
+    top: 15px;
+}
+
+.plus-pos {
+    padding-right: 20px;
+    padding-top: 30px;
+    position: absolute;
+    right: 0;
     top: 15px;
 }
 
@@ -776,14 +788,7 @@ span.tab{
     }
 
     .arrow-pos {
-        padding-top: 20px;
-    }
-
-    .card-img{
-        background: url("images/listImage.jpg") no-repeat center;
-        height: 200px;
-        width: 230px;
-        background-size: cover;
+        padding-top: 25px;
     }
 
     .wish-item {
@@ -831,12 +836,6 @@ span.tab{
         margin-right: auto;
     }
 
-    .card-img{
-        background: url("images/listImage.jpg") no-repeat center;
-        height: 200px;
-        width: 230px;
-        background-size: cover;
-    }
 
     .pack-index .row > [class*='col-'] {
         display: block;
@@ -885,7 +884,7 @@ span.tab{
     }
 
     .arrow-pos {
-        padding-top: 20px;
+        padding-top: 25px;
     }
 
     .hr-bar-stuffs{
@@ -903,39 +902,6 @@ span.tab{
     border-bottom-right-radius: 4px;
 }
 
-input[type=checkbox] {
-
-    cursor: pointer;
-    border-radius:25px;
-
-    -webkit-appearance:button;
-
-    border: double 2px #000000;
-
-    background-color: #fffafe;
-    color:#FFF;
-
-    width:18px;
-    height:18px;
-}
-
-input[type=checkbox]:checked {
-    background-color: #215eb7;
-    border-color: #0c0940;
-}
-
-.checked {
-    cursor: pointer;
-    border-radius:25px;
-    background-color: #215eb7;
-    border-color: #0c0940;
-    width:20px;
-    height:15px;
-}
-
-input[type=checkbox]:hover {
-    box-shadow:0 0 4px #000000;
-}
 
 #printable { display: none; }
 

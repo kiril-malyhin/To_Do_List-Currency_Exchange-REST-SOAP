@@ -27,14 +27,7 @@ class AppAsset extends AssetBundle
     public $js = [
         'js/libs/ng-alertify/dist/ng-alertify.js',
         'js/myApp.js',
-        'js/site/myBarCtrl.js',
-        'js/site/listCtrl.js',
-        'js/site/contactCtrl.js',
-        'js/site/editCtrl.js',
-        'js/site/paymentCtrl.js',
-        'js/user/loginCtrl.js',
-        'js/user/signCtrl.js',
-        'js/user/passwordCtrl.js'
+        'js/site/todoCtrl.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',
