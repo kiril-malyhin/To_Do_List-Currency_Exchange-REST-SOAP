@@ -1,6 +1,6 @@
 
     <div class="modal-header">
-        <h3 class="modal-title">Add Task</h3>
+        <h3 class="modal-title" style="text-align: center">Add Task</h3>
     </div>
     <div class="modal-body">
         <form method="POST" name="addTaskForm" novalidate>
@@ -8,7 +8,7 @@
             <div class="form-group">
                 <label class="control-label"><span class="glyphicon glyphicon-pencil"></span>  Task name</label>
                 <input type="text" name="taskName" class="form-control" placeholder="Enter task name"
-                       ng-model="taskInfo.taskName" ng-minlength="1" ng-maxlength="32" required>
+                       ng-model="taskInfo.taskName" ng-minlength="1" ng-maxlength="12" required>
                 <p ng-show="addTaskForm.taskName.$error.minlength" class="help-block">Task name is too short.</p>
                 <p ng-show="addTaskForm.taskName.$error.maxlength" class="help-block">Task name is too long.</p>
                 <span class="help-block"></span>

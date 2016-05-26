@@ -20,6 +20,7 @@ AppAsset::register($this);
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-animate.js"></script>
 <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.1.2.js"></script>
 <script src="http://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
+<!--<link rel="stylesheet" href="../layouts/../../web/js/libs/FortAwesome-Font-Awesome-8e241f2/css/font-awesome.min.css">-->
 
 <head>
     <meta charset="<?= Yii::$app->charset ?>">

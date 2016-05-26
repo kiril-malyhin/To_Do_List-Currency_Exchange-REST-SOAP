@@ -1,0 +1,27 @@
+
+    <div class="modal-header">
+        <h3 class="modal-title" style="text-align: center">Task</h3>
+    </div>
+    <div class="modal-body">
+        <form method="POST" name="taskForm" novalidate>
+
+            <div class="form-group">
+                <label class="control-label" style="font-size: 16px"><span class="glyphicon glyphicon-pencil"></span>  Task name:</label>
+                <input type="text" name="taskName" class="form-control" placeholder="Enter task name"
+                       ng-model="taskInfo.taskName" ng-minlength="1" ng-maxlength="12" required>
+                <p ng-show="taskForm.taskName.$error.minlength" class="help-block">Task name is too short.</p>
+                <p ng-show="taskForm.taskName.$error.maxlength" class="help-block">Task name is too long.</p>
+                <span class="help-block"></span>
+            </div>
+            <div class="form-group">
+                <label style="font-size: 16px"><span class="fa fa-file-text"></span>  Description:</label>
+                <textarea type="text" name="taskDescription" class="form-control"  ng-model="taskInfo.taskDescription" placeholder="Enter few words about your task"
+                          rows="6"   ng-minlength="3" ng-maxlength="200" required></textarea>
+                <p ng-show="taskForm.taskDescription.$error.minlength" class="help-block">Description is too short.</p>
+                <p ng-show="taskForm.taskDescription.$error.maxlength" class="help-block">Description is too long.</p>
+                <span class="help-block"></span>
+            </div>
+            <button type="button" ng-click="updateTask()" ng-disabled="taskForm.$invalid" class="btn btn-primary btn-log-sign"><i class="fa fa-floppy-o"></i> Update</button>
+            <button class="btn btn-danger btn-log-sign" type="button" ng-click="deleteTask()"><i class="fa fa-times"></i>  Delete</button>
+        </form>
+    </div>

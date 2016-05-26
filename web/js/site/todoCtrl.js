@@ -2,15 +2,100 @@
 
 app.controller("todoCtrl", function($scope, $http, $state, $timeout,Alertify,$uibModal) {
 
-    $http.post('index.php?r=site/get_all_items').success(function(response){
-        //console.log(response);
-        $scope.tasks = response;
-        });
-
-    $scope.getAll = function(){
+    var getAll = function(){
         $http.post('index.php?r=site/get_all_items').success(function(response){
-            //console.log(response);
             $scope.tasks = response;
+        });
+    };
+
+    getAll();
+
+    $scope.openTask = function(taskInfo){
+        $uibModal.open({
+
+            templateUrl: 'templates/site/task.html',
+            controller: function ($scope, $uibModalInstance,taskId,taskName,taskDescription,taskDate) {
+
+                $scope.taskInfo = {
+                    taskName: taskName,
+                    taskDescription: taskDescription,
+                    taskDate: taskDate
+                };
+
+                $scope.deleteTask = function () {
+
+                    var data = {
+                        taskId: taskId,
+                        taskName: $scope.taskInfo.taskName,
+                        taskDescription: $scope.taskInfo.taskDescription,
+                        taskDate: new Date()
+                    };
+
+                    alertify.confirm("Do You really want to delete this task?", function (e) {
+                        if (e) {
+                            $http.post('index.php?r=site/delete_task',data).success(function(response){
+
+                                if(JSON.parse(response) != "bad"){
+                                    $scope.autoClose();
+                                    Alertify.success('Task successfully deleted!');
+                                    getAll();
+                                }
+                            }).error(function(error){
+                                console.error(error);
+                            });
+                        } else {
+                            Alertify.error("Task was not deleted!");
+                        }
+                    });
+                };
+
+                $scope.updateTask = function (){
+                    var data = {
+                        taskId: taskId,
+                        taskName: $scope.taskInfo.taskName,
+                        taskDescription: $scope.taskInfo.taskDescription,
+                        taskDate: new Date()
+                    };
+
+                    alertify.confirm("Update this task?", function (e) {
+                        if (e) {
+                            $http.post('index.php?r=site/update_task',data).success(function(response){
+
+                                if(JSON.parse(response) != "bad"){
+                                    $scope.autoClose();
+                                    Alertify.success('Task successfully updated!');
+                                    getAll();
+                                }
+                            }).error(function(error){
+                                console.error(error);
+                            });
+                        } else {
+                            Alertify.error("Task was not updated!");
+                        }
+                    });
+                };
+
+                $scope.autoClose = function () {
+                    $uibModalInstance.dismiss('Cancel');
+                };
+
+
+            },
+            size: 'sm',
+            resolve:{
+                taskId: function () {
+                    return taskInfo.item_id;
+                },
+                taskName: function () {
+                    return taskInfo.item_name;
+                },
+                taskDescription: function () {
+                    return taskInfo.item_description;
+                },
+                taskDate: function () {
+                    return taskInfo.item_data_create;
+                }
+            }
         });
     };
 
@@ -46,10 +131,8 @@ app.controller("todoCtrl", function($scope, $http, $state, $timeout,Alertify,$ui
 
                             $scope.autoClose();
 
-                            Alertify.alert('Task successfully added!');
-                            $http.post('index.php?r=site/get_all_items').success(function(response){
-                                $scope.tasks = response;
-                            });
+                            Alertify.success('Task successfully added!');
+                            getAll();
                         }
                         else {
 
