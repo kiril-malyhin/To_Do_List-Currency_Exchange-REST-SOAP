@@ -1,6 +1,9 @@
+<?php
 
+$this->title = 'To Do List';
+?>
 <div class="container" ng-controller="todoCtrl">
-    <div class="row" style="padding-top: 4%; padding-bottom: 8%">
+    <div class="row td-style">
         <div class="name-style content-block center-block label-pos-list" >
                 <span style="font-size: 60px">To Do List</span>
                 <i style="color: #060e80; background-color: white; cursor: pointer" class="fa fa-plus-circle" ng-click="openAdd()"
@@ -26,6 +29,5 @@
                     </div>
                 </div>
             </div>
-
     </div>
 </div>

@@ -65,7 +65,7 @@ class SiteController extends BaseController
     public function actionGet_all_items(){
 
         $query= new Query();
-        $items = $query->from('items')->select(['*'])->all();
+        $items = $query->from('items')->select(['item_id', 'item_name', 'item_description', 'item_data_create'])->all();
         echo json_encode($items);
     }
 

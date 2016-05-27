@@ -54,7 +54,7 @@ AppAsset::register($this);
     <footer class="footer" style="background-color: black;">
         <div class="containerContent">
             <p class="pull-left" style="padding-left: 10px">&copy; Test <?= date('Y') ?></p>
-            <p style="padding-right: 60px">Made by Kirill Malyhin</p>
+            <p class="pull-right">Made by Kirill Malyhin</p>
         </div>
     </footer>
 

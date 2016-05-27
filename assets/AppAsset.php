@@ -20,6 +20,7 @@ class AppAsset extends AssetBundle
     public $css = [
         'js/libs/ng-alertify/dist/ng-alertify.css',
         'js/libs/font-awesome-4.5.0/css/font-awesome.min.css',
+//        'js/libs/angular-animate.min.js',
         'css/site.css',
         'css/animate.css',
         'css/icons.css'
@@ -27,7 +28,8 @@ class AppAsset extends AssetBundle
     public $js = [
         'js/libs/ng-alertify/dist/ng-alertify.js',
         'js/myApp.js',
-        'js/site/todoCtrl.js'
+        'js/site/todoCtrl.js',
+        'js/site/currencyExchangeCtrl.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',
